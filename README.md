@@ -1,4 +1,4 @@
-# Advent of Code 2021
+# Advent of Code 2022
 
 Solutions for [Advent of Code 2022][aoc]. This project uses Java 17.
 
