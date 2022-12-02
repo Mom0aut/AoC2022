@@ -41,18 +41,18 @@ public class Day1 {
         BufferedReader reader = BufferReaderUtil.readFile(filename);
         String currentLine = reader.readLine();
         List<Integer> elfCalories = new ArrayList<>();
-        int numb = 0;
+        int calory = 0;
         while (currentLine != null) {
             if (currentLine.equals("")) {
-                elfCalories.add(numb);
-                numb = 0;
+                elfCalories.add(calory);
+                calory = 0;
             } else {
-                numb += Integer.parseInt(currentLine);
+                calory += Integer.parseInt(currentLine);
             }
             currentLine = reader.readLine();
         }
         reader.close();
-        elfCalories.add(numb);
+        elfCalories.add(calory);
         return elfCalories;
     }
 
