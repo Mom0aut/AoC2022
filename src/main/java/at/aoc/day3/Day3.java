@@ -14,7 +14,7 @@ public class Day3 {
 
     public static void main(String[] args) throws IOException {
         Day3 day3 = new Day3();
-        //        day3.partOne("day3/bigData.txt");
+        day3.partOne("day3/bigData.txt");
         day3.partTwo("day3/bigData.txt");
     }
 
