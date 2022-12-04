@@ -63,10 +63,10 @@ public class Day4 {
 
     private static List<Integer> createNumberSequence(String numberPair) {
         List<Integer> pairs = new ArrayList<>();
-        String[] leftRange = numberPair.split("-");
-        String leftStartRange = leftRange[0];
-        String leftEndRange = leftRange[1];
-        for (int i = Integer.parseInt(leftStartRange); i <= Integer.parseInt(leftEndRange); i++) {
+        String[] numberRange = numberPair.split("-");
+        String startRange = numberRange[0];
+        String endRange = numberRange[1];
+        for (int i = Integer.parseInt(startRange); i <= Integer.parseInt(endRange); i++) {
             pairs.add(i);
         }
         return pairs;
