@@ -12,11 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day7 {
-
-    //    private static final List<Dir> dirs = new ArrayList<>();
-    //    private static final Dir root = new Dir("/");
-    //    private static Dir currentDir;
-
     private static Dir currentDir;
 
     public static void main(String[] args) throws IOException {

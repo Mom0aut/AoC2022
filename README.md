@@ -15,3 +15,4 @@ Solutions for [Advent of Code 2022][aoc]. This project uses Java 17.
 | ✔ [Day 5: Supply Stacks](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day5/Day5.java)           |    🌟    |    🌟    |
 | ✔ [Day 6: Tuning Trouble](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day6/Day6.java)          |    🌟    |    🌟    |
 | ✔ [Day 7: No Space Left On Device](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day7/Day7.java) |    🌟    |    🌟    |
+| ✔ [Day 8: Treetop Tree House](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day8/Day8.java)      |    🌟    |    🌟    |
