@@ -14,24 +14,21 @@ public class Day8 {
 
     public static void main(String[] args) throws IOException {
         Day8 day8 = new Day8();
-        //        day8.partOne("day8/bigData.txt");
+        day8.partOne("day8/bigData.txt");
         day8.partTwo("day8/bigData.txt");
 
     }
 
     public void partOne(String filename) throws IOException {
-
         BufferedReader reader = BufferReaderUtil.readFile(filename);
         int lineCounter = 0;
         String[][] forest = new String[99][99];
         String line = reader.readLine();
-
         while (line != null) {
             char[] trees = line.toCharArray();
             for (int i = 0; i < trees.length; i++) {
                 forest[lineCounter][i] = String.valueOf(trees[i]);
             }
-
             line = reader.readLine();
             lineCounter++;
             System.out.println("Trees: " + Arrays.deepToString(forest) + "\n");
@@ -39,7 +36,6 @@ public class Day8 {
         reader.close();
 
         int visiableTrees = 0;
-
 
         for (int i = 0; i < forest.length; i++) {
 
