@@ -17,3 +17,4 @@ Solutions for [Advent of Code 2022][aoc]. This project uses Java 17.
 | ✔ [Day 7: No Space Left On Device](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day7/Day7.java) |    🌟    |    🌟    |
 | ✔ [Day 8: Treetop Tree House](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day8/Day8.java)      |    🌟    |    🌟    |
 | ✔ [Day 9: Rope Bridge](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day9/Day9.java)             |    🌟    |    🌟    |
+| ✔ [Day 10: Cathode-Ray Tube](https://github.com/Mom0aut/AoC2022/blob/master/src/main/java/at/aoc/day10/Day10.java)     |    🌟    |    🌟    |
