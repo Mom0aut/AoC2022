@@ -14,8 +14,8 @@ public class Day9 {
 
     public static void main(String[] args) throws IOException {
         Day9 day9 = new Day9();
-        //        day9.partOne("day9/bigData.txt");
-        day9.partTwo("day9/smallData.txt");
+        day9.partOne("day9/bigData.txt");
+        day9.partTwo("day9/bigData.txt");
 
     }
 
@@ -87,42 +87,28 @@ public class Day9 {
         reader.close();
         System.out.println("Moving tail counter: " + tailPositions.size());
 
-        //Wrong
-        //4241
-        //4242
-        //9366
-
     }
 
     public void partTwo(String filename) throws IOException {
         BufferedReader reader = BufferReaderUtil.readFile(filename);
         String line = reader.readLine();
-        HeadPosition headPosition = new HeadPosition();
-
-        List<TailPosition> tailPositions =
-                List.of(new TailPosition(), new TailPosition(), new TailPosition(),
-                        new TailPosition(), new TailPosition(), new TailPosition(),
-                        new TailPosition(), new TailPosition(), new TailPosition());
-
-        TailPosition tailPosition = new TailPosition();
-        Set<TailPosition> tailPositionsFromLast = new HashSet<>();
-        tailPositionsFromLast.add(new TailPosition());
+        Knot headPosition = new Knot(6, 12);
+        List<Knot> knots = List.of(headPosition, new Knot(6, 12), new Knot(6, 12), new Knot(6, 12),
+                new Knot(6, 12), new Knot(6, 12), new Knot(6, 12), new Knot(6, 12), new Knot(6, 12),
+                new Knot(6, 12));
+        Set<Knot> tailPositionsFromLast = new HashSet<>();
+        tailPositionsFromLast.add(new Knot(6, 12));
 
         while (line != null) {
-
-
             String[] commands = line.split(" ");
-
-
             if (commands[0].equals("R")) {
 
                 for (int i = 0; i < Integer.parseInt(commands[1]); i++) {
                     //Move Head
-                    headPosition.lastPosition =
-                            new HeadPosition(headPosition.column, headPosition.row);
+                    headPosition.lastPosition = new Knot(headPosition.column, headPosition.row);
                     headPosition.column++;
                     //Move Tail only if it is not touching the head
-                    moveTails(headPosition, tailPositions, tailPositionsFromLast);
+                    moveTails(knots, tailPositionsFromLast);
                 }
             }
 
@@ -130,22 +116,20 @@ public class Day9 {
 
                 for (int i = 0; i < Integer.parseInt(commands[1]); i++) {
                     //Move Head
-                    headPosition.lastPosition =
-                            new HeadPosition(headPosition.column, headPosition.row);
+                    headPosition.lastPosition = new Knot(headPosition.column, headPosition.row);
                     headPosition.column--;
                     //Move Tail only if it is not touching the head
-                    moveTails(headPosition, tailPositions, tailPositionsFromLast);
+                    moveTails(knots, tailPositionsFromLast);
                 }
             }
 
             if (commands[0].equals("U")) {
                 for (int i = 0; i < Integer.parseInt(commands[1]); i++) {
                     //Move Head
-                    headPosition.lastPosition =
-                            new HeadPosition(headPosition.column, headPosition.row);
+                    headPosition.lastPosition = new Knot(headPosition.column, headPosition.row);
                     headPosition.row++;
                     //Move Tail only if it is not touching the head
-                    moveTails(headPosition, tailPositions, tailPositionsFromLast);
+                    moveTails(knots, tailPositionsFromLast);
                 }
 
             }
@@ -153,11 +137,10 @@ public class Day9 {
             if (commands[0].equals("D")) {
                 for (int i = 0; i < Integer.parseInt(commands[1]); i++) {
                     //Move Head
-                    headPosition.lastPosition =
-                            new HeadPosition(headPosition.column, headPosition.row);
+                    headPosition.lastPosition = new Knot(headPosition.column, headPosition.row);
                     headPosition.row--;
                     //Move Tail only if it is not touching the head
-                    moveTails(headPosition, tailPositions, tailPositionsFromLast);
+                    moveTails(knots, tailPositionsFromLast);
                 }
 
             }
@@ -167,7 +150,6 @@ public class Day9 {
         }
         reader.close();
         System.out.println("Moving tail counter: " + tailPositionsFromLast.size());
-
     }
 
 
@@ -181,38 +163,36 @@ public class Day9 {
         }
     }
 
-    private void moveTails(HeadPosition headPosition, List<TailPosition> tailPositions,
-            Set<TailPosition> lastTailPositions) {
+    private void moveTails(List<Knot> knots, Set<Knot> lastKnotPositions) {
 
-        for (int i = 0; i < tailPositions.size(); i++) {
-
-            if (i == 0) {
-                if (!tailPositions.get(i).isTouchingHead(headPosition)) {
-                    //Move tail to tail
-                    tailPositions.get(i).movementVector = new TailPosition(
-                            headPosition.lastPosition.column - tailPositions.get(i).column,
-                            headPosition.lastPosition.row - tailPositions.get(i).row);
-                    tailPositions.get(i).row = headPosition.lastPosition.row;
-                    tailPositions.get(i).column = headPosition.lastPosition.column;
+        for (int i = 0; i < knots.size(); i++) {
+            //Skip Head
+            if (i > 0) {
+                // Check the distance.
+                // If we're close enough then don't move at all.
+                Knot previousKnot = knots.get(i - 1);
+                Knot currentKnot = knots.get(i);
+                if (Math.abs(previousKnot.row - currentKnot.row) < 2 && Math.abs(
+                        previousKnot.column - knots.get(i).column) < 2) {
+                    return;
                 }
-            } else {
-                if (!tailPositions.get(i).isTouchingPosition(tailPositions.get(i - 1))) {
-                    //Move tail to tail
-                    tailPositions.get(i).movementVector =
-                            new TailPosition(tailPositions.get(i - 1).movementVector.column,
-                                    tailPositions.get(i - 1).movementVector.row);
-                    tailPositions.get(i).row += tailPositions.get(i - 1).movementVector.row;
-                    tailPositions.get(i).column += tailPositions.get(i - 1).movementVector.column;
-                    if (i == 8) {
-                        lastTailPositions.add(new TailPosition(tailPositions.get(i).column,
-                                tailPositions.get(i).row));
-                    }
+                if (previousKnot.row > currentKnot.row) {
+                    currentKnot.row++;
+                }
+                if (previousKnot.row < currentKnot.row) {
+                    currentKnot.row--;
+                }
+                if (previousKnot.column > currentKnot.column) {
+                    currentKnot.column++;
+                }
+                if (previousKnot.column < currentKnot.column) {
+                    currentKnot.column--;
+                }
+                if (i == 9) {
+                    lastKnotPositions.add(new Knot(currentKnot.column, currentKnot.row));
                 }
             }
         }
-
-
-
     }
 
 }

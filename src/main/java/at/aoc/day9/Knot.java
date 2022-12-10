@@ -5,16 +5,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class TailPosition {
+public class Knot {
 
     int column = 0;
     int row = 0;
 
-    TailPosition movementVector;
+    Knot movementVector;
 
-    TailPosition lastPosition;
+    Knot lastPosition;
 
-    public TailPosition(int column, int row) {
+    public Knot(int column, int row) {
         this.column = column;
         this.row = row;
     }
@@ -68,7 +68,7 @@ public class TailPosition {
         return false;
     }
 
-    public boolean isTouchingPosition(TailPosition position) {
+    public boolean isTouchingPosition(Knot position) {
 
         if (row == position.row && column == position.column) {
             return true;
